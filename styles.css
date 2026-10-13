@@ -94,3 +94,21 @@ footer .brand-logo { width: 110px; }
 /* About photo is a wide shot, so it spans the layout uncropped with the story beneath. */
 .about-layout .about-portrait { grid-column: 1 / -1; aspect-ratio: 1921 / 1166; height: auto; }
 .about-layout .about-story { grid-column: 1 / -1; max-width: 700px; }
+
+/* Project cards link to detail pages; detail pages lead with a wide photo, then story, facts, and gallery. */
+.project-link { display: block; color: inherit; text-decoration: none; }
+.project-caption .text-link { display: inline-block; text-decoration: underline; transition: color 180ms ease; }
+.project-back { display: inline-block; margin-bottom: 40px; }
+.project-lead { aspect-ratio: 16 / 9; }
+.project-layout { align-items: start; gap: 60px; }
+.project-layout .contact-details { margin-top: 0; }
+.project-layout .contact-details div:first-child { border-top: 0; padding-top: 0; }
+.project-gallery { margin-bottom: 55px; }
+@media (hover: hover) and (pointer: fine) { .project-link:hover .text-link { color: var(--wood); } }
+@media (max-width: 760px) { .project-back { margin-bottom: 28px; } .project-layout { gap: 30px; } }
+
+/* Real photos keep their cropped shape (height follows width, not the height attribute).
+   Project pages with a portrait main photo: photo on the left, story and facts stacked on the right. */
+.project-photo { display: block; height: auto; }
+.project-page .project-portrait { aspect-ratio: 3 / 4; }
+.project-body .inquiry-guide { margin-top: 40px; }

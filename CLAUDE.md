@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static marketing website for Triple L Woodworks, a custom cabinetry business. Plain HTML/CSS/JS — no build step, no package manager, no framework, no tests. Four pages: `index.html` (projects/home), `about.html`, `faq.html`, `contact.html`, sharing one stylesheet (`styles.css`) and one script (`theme.js`).
+A static marketing website for Triple L Woodworks, a custom cabinetry business. Plain HTML/CSS/JS — no build step, no package manager, no framework, no tests. Four main pages: `index.html` (projects/home), `about.html`, `faq.html`, `contact.html`, plus one detail page per featured project (`project-01.html`, `project-02.html`, `project-03.html`), all sharing one stylesheet (`styles.css`) and one script (`theme.js`).
 
 ## Commands
 
@@ -12,7 +12,7 @@ There is no build, lint, or test tooling. To preview changes, open the HTML file
 
 ## Architecture
 
-**Shared-markup pattern, not templating.** Each HTML page repeats the same header/nav/footer markup verbatim (including the logo `<img>` tag and theme-toggle button). There is no includes system — when changing the header, nav, footer, or site-wide markup, edit all four HTML files identically rather than editing one and expecting it to propagate.
+**Shared-markup pattern, not templating.** Each HTML page repeats the same header/nav/footer markup verbatim (including the logo `<img>` tag and theme-toggle button). There is no includes system — when changing the header, nav, footer, or site-wide markup, edit every HTML file (the four main pages and each `project-NN.html`) identically rather than editing one and expecting it to propagate.
 
 **Single stylesheet, append-only sections.** `styles.css` is one file organized as a long minified base rule block followed by clearly separated, commented, human-readable sections appended over time (about-page layout, motion/animation, logo handling, theme colors, FAQ disclosures). When adding styles, follow this pattern: append a new commented section rather than interleaving rules into the minified base block.
 
@@ -22,7 +22,7 @@ There is no build, lint, or test tooling. To preview changes, open the HTML file
 
 **Motion is CSS-only and respects `prefers-reduced-motion`.** Page-to-page fades use the `@view-transition` CSS API (supported browsers only, degrades to normal navigation elsewhere). Entrance animations, hover lifts, and button press effects are all plain CSS keyframes/transitions gated behind `@media (hover: hover) and (pointer: fine)` and disabled wholesale under `@media (prefers-reduced-motion: reduce)`. No JS animation libraries are used or should be introduced.
 
-**Content is intentionally placeholder throughout.** Project photos (`index.html`), the about-me story (`about.html`), and contact details (`contact.html`) are all marked with placeholder text and HTML comments showing the exact markup to swap in (e.g. `<img class="project-photo" src="assets/...">`, `<a href="mailto:...">`). When filling in real content, follow the commented example markup already in place rather than inventing new structure, and add new project photos as `<article class="project">` copies per the pattern in `index.html`.
+**Content is intentionally placeholder throughout.** Project photos (`index.html`), the about-me story (`about.html`), and contact details (`contact.html`) are all marked with placeholder text and HTML comments showing the exact markup to swap in (e.g. `<img class="project-photo" src="assets/...">`, `<a href="mailto:...">`). When filling in real content, follow the commented example markup already in place rather than inventing new structure, and add new project photos as `<article class="project">` copies per the pattern in `index.html`. Each project card links to a `project-NN.html` detail page; adding a project means copying both the card and a detail page.
 
 ## Deployment
 

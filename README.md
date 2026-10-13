@@ -19,6 +19,7 @@ Navigation links have animated underlines, buttons lift on hover and press on cl
 - Replace the story placeholders in `about.html` with your name, woodworking background, and approach. Add a portrait or workshop photo using the example in the HTML comment.
 - Replace the three photo placeholders in `index.html` with your project photos. An example image tag is included in an HTML comment. Save photos in `assets/`.
 - Update each project title and description. Copy an entire `<article class="project">…</article>` to add more projects.
+- Each project card opens its own detail page (`project-01.html`, `project-02.html`, `project-03.html`). Fill in the project name, story, at-a-glance facts, and photos there; example image tags are in the HTML comments. To add a project, copy one of these files, rename it, and point the new card's link at it.
 - Remove the “Portfolio coming soon” paragraph when your projects are ready.
 - Add your real email, phone number, and service area in `contact.html`. Examples for clickable email and phone links are included in a comment. The starter does not have a working inquiry form.
 - Change colors in the first line of `styles.css` if desired.
@@ -26,7 +27,7 @@ Navigation links have animated underlines, buttons lift on hover and press on cl
 
 ## Publish on GitHub Pages
 1. Sign in to GitHub and create a public repository named `YOUR-USERNAME.github.io`, replacing YOUR-USERNAME with your GitHub username. If that repository already exists, use it without overwriting existing work.
-2. In the repository, choose **Add file → Upload files**. Upload `index.html`, `about.html`, `faq.html`, `contact.html`, `styles.css`, `theme.js`, `.nojekyll`, and your `assets` folder. The HTML files must be at the top level of the repository, not inside another folder. GitHub does not retain empty folders, so upload assets when you add photos.
+2. In the repository, choose **Add file → Upload files**. Upload `index.html`, `about.html`, `faq.html`, `contact.html`, the `project-NN.html` pages, `styles.css`, `theme.js`, `.nojekyll`, and your `assets` folder. The HTML files must be at the top level of the repository, not inside another folder. GitHub does not retain empty folders, so upload assets when you add photos.
 3. Commit the uploaded files to the `main` branch.
 4. Open **Settings → Pages**. Under **Build and deployment**, select **Deploy from a branch**, choose **main** and **/(root)**, then click **Save**.
 5. Wait for deployment to finish. Pages settings will show the live website address, normally `https://YOUR-USERNAME.github.io/`.
