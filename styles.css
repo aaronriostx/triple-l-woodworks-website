@@ -90,3 +90,7 @@ footer .brand-logo { width: 110px; }
 .faq-answer a { color: var(--ink); }
 @media (prefers-reduced-motion: no-preference) { .faq-item[open] .faq-answer { animation: entrance 220ms ease both; } }
 @media (max-width: 760px) { .site-header nav { flex: 1 1 100%; order: 3; margin-left: 0; justify-content: space-between; gap: 10px; } .theme-toggle { margin-left: auto; } .faq-item summary { font-size: 21px; padding-block: 22px; } .faq-list { margin-top: 32px; } }
+
+/* About photo is a wide shot, so it spans the layout uncropped with the story beneath. */
+.about-layout .about-portrait { grid-column: 1 / -1; aspect-ratio: 1921 / 1166; height: auto; }
+.about-layout .about-story { grid-column: 1 / -1; max-width: 700px; }
