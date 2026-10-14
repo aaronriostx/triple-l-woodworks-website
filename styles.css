@@ -49,11 +49,11 @@ footer .brand-logo { width: 110px; }
 }
 
 /* Theme colors stay warm in both modes. */
-:root { color-scheme: light; --panel: #ebe8df; --accent: #81543a; --strip: #30392d; --strip-ink: #f6f3ec; --button: #5f7156; --button-hover: #81543a; }
-:root[data-theme="dark"] { color-scheme: dark; --paper: #20231e; --ink: #f0ece2; --muted: #babeb2; --wood: #dab18b; --line: #454c40; --green: #30392d; --panel: #2b3028; --accent: #dab18b; --strip: #151a14; --strip-ink: #f0ece2; --button: #5f7156; --button-hover: #81543a; }
+:root { color-scheme: light; --panel: #ebe8df; --accent: #81543a; --strip: #30392d; --strip-ink: #f6f3ec; --button: #5f7156; --button-hover: #81543a; --lightbox-bg: rgb(17 19 15 / 94%); --lightbox-ink: #f0ece2; --lightbox-control: rgb(240 236 226 / 14%); }
+:root[data-theme="dark"] { color-scheme: dark; --paper: #20231e; --ink: #f0ece2; --muted: #babeb2; --wood: #dab18b; --line: #454c40; --green: #30392d; --panel: #2b3028; --accent: #dab18b; --strip: #151a14; --strip-ink: #f0ece2; --button: #5f7156; --button-hover: #81543a; --lightbox-bg: rgb(17 19 15 / 94%); --lightbox-ink: #f0ece2; --lightbox-control: rgb(240 236 226 / 14%); }
 /* Device preference also works if JavaScript is unavailable. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) { color-scheme: dark; --paper: #20231e; --ink: #f0ece2; --muted: #babeb2; --wood: #dab18b; --line: #454c40; --green: #30392d; --panel: #2b3028; --accent: #dab18b; --strip: #151a14; --strip-ink: #f0ece2; --button: #5f7156; --button-hover: #81543a; }
+  :root:not([data-theme]) { color-scheme: dark; --paper: #20231e; --ink: #f0ece2; --muted: #babeb2; --wood: #dab18b; --line: #454c40; --green: #30392d; --panel: #2b3028; --accent: #dab18b; --strip: #151a14; --strip-ink: #f0ece2; --button: #5f7156; --button-hover: #81543a; --lightbox-bg: rgb(17 19 15 / 94%); --lightbox-ink: #f0ece2; --lightbox-control: rgb(240 236 226 / 14%); }
   :root:not([data-theme]) .brand-logo { filter: invert(1); mix-blend-mode: screen; }
 }
 .site-header nav { margin-left: auto; }
@@ -164,3 +164,41 @@ footer p, footer > a:last-child, .footer-links a { font-size: 14px; }
    turning wood brown on hover. The cream .light buttons in the green contact strip are unchanged. */
 .button:not(.light) { background: var(--button); }
 .button:not(.light):hover { background: var(--button-hover); }
+
+/* Click-to-enlarge photos (lightbox.js): project and workshop photos open full-size in a modal dialog.
+   The viewer is dark in both themes so photos look the same either way; its colors match in every theme block. */
+.photo-zoom { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: zoom-in; }
+.photo-zoom:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.photo-zoom-icon { position: absolute; right: 12px; bottom: 12px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--lightbox-bg); color: var(--lightbox-ink); opacity: .75; transition: opacity 180ms ease, transform 180ms ease; }
+.photo-zoom-icon svg { display: block; }
+:root:has(.lightbox[open]) { overflow: hidden; }
+.lightbox { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 72px 88px 56px; border: 0; background: var(--lightbox-bg); color: var(--lightbox-ink); }
+.lightbox[open] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+.lightbox::backdrop { background: transparent; }
+.lightbox-photo { display: block; width: auto; height: auto; max-width: 100%; max-height: calc(100dvh - 170px); object-fit: contain; }
+.lightbox-count { margin: 0; font-size: 14px; letter-spacing: .12em; opacity: .75; }
+.lightbox button { position: absolute; display: grid; place-items: center; width: 48px; height: 48px; padding: 0 0 4px; border: 0; border-radius: 50%; background: var(--lightbox-control); color: var(--lightbox-ink); font: 30px/1 Arial, sans-serif; cursor: pointer; transition: background-color 180ms ease; }
+.lightbox button[hidden] { display: none; }
+.lightbox button:focus-visible { outline: 3px solid var(--lightbox-ink); outline-offset: 3px; }
+.lightbox-close { top: 16px; right: 16px; }
+.lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); }
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+@keyframes lightbox-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox[open] { animation: lightbox-in 200ms ease both; }
+  .lightbox[open] .lightbox-photo { animation: entrance 280ms ease both; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .photo-zoom:hover .photo-zoom-icon { opacity: 1; transform: scale(1.08); }
+  .lightbox button:hover { background: var(--button-hover); }
+}
+/* Phones: the photo uses the full width and the arrows move below it, beside the counter. */
+@media (max-width: 760px) {
+  .lightbox { padding: 64px 12px 84px; }
+  .lightbox-photo { max-height: calc(100dvh - 190px); }
+  .lightbox-prev, .lightbox-next { top: auto; bottom: 20px; transform: none; }
+  .lightbox-prev { left: calc(50% - 110px); }
+  .lightbox-next { right: calc(50% - 110px); }
+  .lightbox-count { position: absolute; bottom: 33px; }
+}

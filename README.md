@@ -49,7 +49,7 @@ Still to fill in:
 
 ## Publish on GitHub Pages
 1. Sign in to GitHub and create a public repository named `YOUR-USERNAME.github.io`, replacing YOUR-USERNAME with your GitHub username. If that repository already exists, use it without overwriting existing work.
-2. In the repository, choose **Add file → Upload files**. Upload `index.html`, `about.html`, `faq.html`, `contact.html`, the `project-NN.html` pages, `shop.html`, `styles.css`, `theme.js`, `.nojekyll`, and your `assets` folder. The HTML files must be at the top level of the repository, not inside another folder. GitHub does not retain empty folders, so upload assets when you add photos.
+2. In the repository, choose **Add file → Upload files**. Upload `index.html`, `about.html`, `faq.html`, `contact.html`, the `project-NN.html` pages, `shop.html`, `styles.css`, `theme.js`, `lightbox.js`, `.nojekyll`, and your `assets` folder. The HTML files must be at the top level of the repository, not inside another folder. GitHub does not retain empty folders, so upload assets when you add photos.
 3. Commit the uploaded files to the `main` branch.
 4. Open **Settings → Pages**. Under **Build and deployment**, select **Deploy from a branch**, choose **main** and **/(root)**, then click **Save**.
 5. Wait for deployment to finish. Pages settings will show the live website address, normally `https://YOUR-USERNAME.github.io/`.
