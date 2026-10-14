@@ -49,11 +49,11 @@ footer .brand-logo { width: 110px; }
 }
 
 /* Theme colors stay warm in both modes. */
-:root { color-scheme: light; --panel: #ebe8df; --accent: #81543a; --strip: #30392d; --strip-ink: #f6f3ec; }
-:root[data-theme="dark"] { color-scheme: dark; --paper: #20231e; --ink: #f0ece2; --muted: #babeb2; --wood: #dab18b; --line: #454c40; --green: #30392d; --panel: #2b3028; --accent: #dab18b; --strip: #151a14; --strip-ink: #f0ece2; }
+:root { color-scheme: light; --panel: #ebe8df; --accent: #81543a; --strip: #30392d; --strip-ink: #f6f3ec; --button: #5f7156; --button-hover: #81543a; }
+:root[data-theme="dark"] { color-scheme: dark; --paper: #20231e; --ink: #f0ece2; --muted: #babeb2; --wood: #dab18b; --line: #454c40; --green: #30392d; --panel: #2b3028; --accent: #dab18b; --strip: #151a14; --strip-ink: #f0ece2; --button: #5f7156; --button-hover: #81543a; }
 /* Device preference also works if JavaScript is unavailable. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) { color-scheme: dark; --paper: #20231e; --ink: #f0ece2; --muted: #babeb2; --wood: #dab18b; --line: #454c40; --green: #30392d; --panel: #2b3028; --accent: #dab18b; --strip: #151a14; --strip-ink: #f0ece2; }
+  :root:not([data-theme]) { color-scheme: dark; --paper: #20231e; --ink: #f0ece2; --muted: #babeb2; --wood: #dab18b; --line: #454c40; --green: #30392d; --panel: #2b3028; --accent: #dab18b; --strip: #151a14; --strip-ink: #f0ece2; --button: #5f7156; --button-hover: #81543a; }
   :root:not([data-theme]) .brand-logo { filter: invert(1); mix-blend-mode: screen; }
 }
 .site-header nav { margin-left: auto; }
@@ -65,7 +65,6 @@ footer .brand-logo { width: 110px; }
 .theme-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 :root[data-theme="dark"] .brand-logo { filter: invert(1); mix-blend-mode: screen; }
 .contact-strip { background: var(--strip); color: var(--strip-ink); }
-:root[data-theme="dark"] .button:not(.light):hover { background: #48543e; }
 :root[data-theme="dark"] .light { background: #f0ece2; color: #20231e; }
 :root[data-theme="dark"] .light:hover { background: #dacdb8; }
 @media (max-width: 760px) {
@@ -132,3 +131,36 @@ footer .brand-logo { width: 110px; }
 nav { align-items: center; }
 .nav-social { display: inline-flex; align-items: center; }
 .nav-social svg { display: block; }
+
+/* Readability: larger type site-wide. Raises body text and the small captions, labels, and details
+   set in the sections above; headings are unchanged. */
+body { font-size: 17px; }
+nav { font-size: 16px; }
+.eyebrow { font-size: 13px; }
+.button { font-size: 16px; }
+.hero-bottom p, .faq-intro, .shop-teaser-text > p:not(.eyebrow) { font-size: 19px; }
+.section-heading > p, .editor-note, .project-caption p, .small { font-size: 16px; }
+.about-story .editor-note { font-size: 17px; }
+.text-link { font-size: 16px; }
+.photo-placeholder p { font-size: 12px; }
+.contact-details dt { font-size: 13px; }
+.contact-details dd { font-size: 17px; }
+.theme-toggle { font-size: 14px; }
+footer p, footer > a:last-child, .footer-links a { font-size: 14px; }
+@media (max-width: 760px) {
+  .site-header nav { font-size: 15px; }
+  .hero-bottom p, .faq-intro, .shop-teaser-text > p:not(.eyebrow) { font-size: 18px; }
+}
+
+/* Buttons: pill-shaped to match the theme toggle, with a little extra side padding for the curve. */
+.button { border-radius: 999px; padding-inline: 30px; }
+
+/* Button arrows: a larger straight arrow (these buttons all link within the site) that slides right on hover. */
+.button { gap: 14px; }
+.button span { font-size: 22px; line-height: 1; -webkit-text-stroke: 1px currentColor; }
+@media (hover: hover) and (pointer: fine) { .button:hover span { transform: translateX(4px); } }
+
+/* Main buttons: a lighter sage green that stands out on both the light and dark page backgrounds,
+   turning wood brown on hover. The cream .light buttons in the green contact strip are unchanged. */
+.button:not(.light) { background: var(--button); }
+.button:not(.light):hover { background: var(--button-hover); }
